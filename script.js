@@ -646,6 +646,9 @@
   }
   function hideTooltip() { if (tooltip) tooltip.classList.remove('show'); }
 
+  // Track which timeline card is currently expanded (only one at a time)
+  let expandedTimelineKey = null;
+
   function renderTimeline() {
     const tl = document.getElementById('timeline');
     const progressFill = document.getElementById('progressFill');
@@ -663,16 +666,47 @@
       const entry = logData[key];
       const isAbsent = entry.status === 'absent';
       const dateStr = new Date(key + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const moduleLabel = entry.module ? ` <span style="color:var(--ink-soft);font-weight:400;font-size:12px;">— ${escapeHtml(MODULE_LABELS[entry.module] || entry.module)}</span>` : '';
+      const isExpanded = expandedTimelineKey === key;
+
+      // Use bullets if available, fall back to description
+      const bullets = entry.bullets && Array.isArray(entry.bullets) && entry.bullets.length > 0
+        ? entry.bullets
+        : (entry.description ? [entry.description] : []);
+
+      // Build bullet HTML
+      const bulletHtml = bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('');
+
+      // Build preview: first bullet (or description) as a short summary
+      const previewText = bullets.length > 0 ? bullets[0] : (entry.description || '');
+
       const row = document.createElement('div');
       row.className = 'tl-row' + (isAbsent ? ' absent' : '');
       row.innerHTML = `
         <div class="tl-date">${dateStr}</div>
         <div class="tl-dot-col"><div class="tl-dot${isAbsent ? ' absent' : ''}"></div>${idx < keys.length - 1 ? '<div class="tl-line"></div>' : ''}</div>
         <div class="tl-content">
-          <h4>${escapeHtml(entry.title)}${entry.module ? ` <span style="color:var(--ink-soft);font-weight:400;font-size:12px;">— ${escapeHtml(MODULE_LABELS[entry.module] || entry.module)}</span>` : ''}</h4>
-          <p>${escapeHtml(entry.description || '')}</p>
+          <h4>${escapeHtml(entry.title)}${moduleLabel}</h4>
+          <p class="tl-preview">${escapeHtml(previewText)}</p>
+          <div class="tl-bullets${isExpanded ? ' expanded' : ''}">
+            <ul class="tl-bullet-list">${bulletHtml}</ul>
+          </div>
         </div>`;
       tl.appendChild(row);
+
+      // Add click handler for expand/collapse on the content area
+      const contentEl = row.querySelector('.tl-content');
+      if (contentEl) {
+        contentEl.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (isExpanded) {
+            expandedTimelineKey = null;
+          } else {
+            expandedTimelineKey = key;
+          }
+          renderTimeline();
+        });
+      }
     });
   }
 
@@ -829,9 +863,24 @@
     });
   }
 
-  window.addEventListener('sc-auth-change', render);
+  window.addEventListener('sc-auth-change', () => {
+    expandedTimelineKey = null;
+    render();
+    renderTimeline();
+  });
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('calGrid')) loadData();
+  });
+
+  // Close expanded timeline card when clicking outside
+  document.addEventListener('click', (e) => {
+    if (expandedTimelineKey !== null) {
+      const clickedInside = e.target.closest('.tl-content');
+      if (!clickedInside) {
+        expandedTimelineKey = null;
+        renderTimeline();
+      }
+    }
   });
 })();
 
