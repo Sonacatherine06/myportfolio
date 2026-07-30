@@ -119,6 +119,12 @@ const PORTFOLIO = {
       title: 'Sensor + Actuator Projects',
       description: 'Projects where a sensor takes input and an actuator or output device responds automatically.',
     },
+    {
+      key: 'software',
+      icon: '💻',
+      title: 'Software Projects',
+      description: 'Standalone software and programming projects written in Go, Python, and other languages.',
+    },
   ],
 
   // ---------------------------------------------------------
@@ -271,6 +277,78 @@ const PORTFOLIO = {
     // --- 🔄 Sensor + Actuator Projects ---
     // (empty for now — projects.html shows a "Coming Soon" card
     // for this category until the first entry is added here)
+
+    // --- 💻 Software Projects ---
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'even-odd',
+      title: 'Even or Odd',
+      category: 'software',
+      description: 'A Go program that determines whether a given number is even or odd, with a multi-stage Dockerfile for containerized execution.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'leap-year',
+      title: 'Leap Year Checker',
+      category: 'software',
+      description: 'A Go program that checks if a year is a leap year using the standard Gregorian calendar rules, packaged with Docker.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'armstrong-number',
+      title: 'Armstrong Number Checker',
+      category: 'software',
+      description: 'A Go program that checks whether a number is an Armstrong (narcissistic) number, with a multi-stage Docker build.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'gcd',
+      title: 'Greatest Common Divisor',
+      category: 'software',
+      description: 'A Go program that calculates the GCD of two numbers using the Euclidean algorithm, with a Dockerfile.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'lcm',
+      title: 'Least Common Multiple',
+      category: 'software',
+      description: 'A Go program that calculates the LCM of two numbers using the GCD formula, packaged with Docker.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'temperature-converter',
+      title: 'Temperature Converter',
+      category: 'software',
+      description: 'A Go program that converts Celsius to Fahrenheit and Kelvin, with a multi-stage Docker build.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'currency-converter',
+      title: 'Currency Converter',
+      category: 'software',
+      description: 'A Go program that converts between USD, EUR, GBP, JPY, INR, CAD, and AUD using fixed exchange rates, with Docker support.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'multiplication-table',
+      title: 'Multiplication Table',
+      category: 'software',
+      description: 'A Go program that prints the multiplication table for a given number from 1 to 10, packaged with a Dockerfile.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'largest-of-three',
+      title: 'Largest of Three Numbers',
+      category: 'software',
+      description: 'A Go program that finds the largest number among three given numbers, with a multi-stage Docker build.',
+    },
+    {
+      githubRepo: 'go-docker-practice',
+      repoPath: 'vowel-counter',
+      title: 'Vowel Counter',
+      category: 'software',
+      description: 'A Go program that counts the number of vowels in a given string, packaged with a Dockerfile.',
+    },
   ],
 };
 
