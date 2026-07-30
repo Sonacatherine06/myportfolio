@@ -1,0 +1,11 @@
+# Copy this file's contents into Vercel → Project → Settings → Environment Variables.
+# Do NOT commit a real .env file with your actual password to a public GitHub repo.
+
+# The admin password for editing the PM-VIKAS calendar on the LIVE Vercel site.
+# (This is separate from the local fallback password in data.js, which only
+# applies when the site is opened directly / with no backend available.)
+ADMIN_PASSWORD=choose-a-strong-password-here
+
+# KV_REST_API_URL and KV_REST_API_TOKEN are added automatically by Vercel
+# once you attach a Vercel KV (or Upstash Redis) database to this project —
+# you do not need to set them manually.

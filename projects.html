@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Sona Catherine</title>
+<meta name="description" content="Arduino, Embedded Systems, IoT, Tinkercad, Raspberry Pi Pico and Electronics projects by Sona Catherine.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>Sona Catherine</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#top">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="pmvikas.html">PM-VIKAS</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="projects.html" class="active">All Projects</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#education">Education</a>
+      <a href="index.html#certifications">Certifications</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="admin-zone" id="adminZone" style="position:relative;">
+      <span class="admin-status" id="adminStatus">Admin Active</span>
+      <button class="login-btn" id="loginBtn">Admin Login</button>
+      <button class="logout-btn" id="logoutBtn">Log out</button>
+      <div class="login-pop" id="loginPop">
+        <form id="loginForm">
+          <label for="pwInput">Password</label>
+          <input type="password" id="pwInput" autocomplete="current-password" placeholder="••••••••">
+          <div class="submit-row">
+            <button type="submit" class="primary">Log in</button>
+          </div>
+          <div class="login-msg" id="loginMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pv-hero">
+    <div class="wrap">
+      <div class="pv-hero-top">
+        <div>
+          <span class="eyebrow">Selected repositories</span>
+          <h1>Projects</h1>
+          <p>A hand-picked selection of Arduino, Embedded Systems and Electronics builds, organized by category. GitHub is where the code lives — this page only shows what I've chosen to feature.</p>
+        </div>
+        <a href="https://github.com/Sonacatherine06" target="_blank" rel="noopener" class="btn-primary" data-field="github-href">
+          <i class="fa-brands fa-github" style="margin-right:8px;" aria-hidden="true"></i>View My GitHub Profile
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rendered by script.js from PORTFOLIO.featuredProjects / PORTFOLIO.projectCategories
+       in portfolio-data.js. To add, remove, or recategorize a project, edit
+       portfolio-data.js — not this file. Numbering within each category is
+       calculated automatically from list order. -->
+  <div class="wrap" id="featuredProjectsRoot"></div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Sona Catherine — Electronics &amp; Communication Engineering portfolio.</span>
+    <div class="footer-links">
+      <a href="mailto:sonacatherine06@gmail.com" data-field="email-href">Email</a>
+      <a href="https://github.com/Sonacatherine06" target="_blank" rel="noopener" data-field="github-href">GitHub</a>
+      <a href="https://www.linkedin.com/in/sona-catherine/" target="_blank" rel="noopener" data-field="linkedin-href">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script src="portfolio-data.js" defer></script>
+<script src="data.js" defer></script>
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM-VIKAS IoT Internship — Sona Catherine</title>
+<meta name="description" content="Daily activity log and program overview for the PM-VIKAS IoT Assistant Internship at IIIT Kottayam.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>Sona Catherine</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#top">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="pmvikas.html" class="active">PM-VIKAS</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="projects.html">All Projects</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#education">Education</a>
+      <a href="index.html#certifications">Certifications</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="admin-zone" id="adminZone" style="position:relative;">
+      <span class="admin-status" id="adminStatus">Admin Active</span>
+      <button class="login-btn" id="loginBtn">Admin Login</button>
+      <button class="logout-btn" id="logoutBtn">Log out</button>
+      <div class="login-pop" id="loginPop">
+        <form id="loginForm">
+          <label for="pwInput">Password</label>
+          <input type="password" id="pwInput" autocomplete="current-password" placeholder="••••••••">
+          <div class="submit-row">
+            <button type="submit" class="primary">Log in</button>
+          </div>
+          <div class="login-msg" id="loginMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pv-hero">
+    <div class="wrap">
+      <div class="pv-hero-top">
+        <div>
+          <span class="eyebrow">Ministry of Minority Affairs · PM-VIKAS Scheme</span>
+          <h1>IoT Assistant Internship, IIIT Kottayam</h1>
+          <p>Under the PM VIKAS (Pradhan Mantri Virasat Ka Vikas) Scheme, the Indian Institute of Information Technology Kottayam was engaged by the Ministry of Minority Affairs to deliver skill training in Internet of Things — an emerging, high-employment-potential domain — to candidates from minority communities in Kerala, alongside a parallel women's leadership and entrepreneurship track.</p>
+        </div>
+        <span class="pv-badge">June 19 – 30, 2026</span>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-cell"><div class="stat-num">10</div><div class="stat-label">Training days logged</div></div>
+        <div class="stat-cell"><div class="stat-num">4</div><div class="stat-label">Core modules</div></div>
+        <div class="stat-cell"><div class="stat-num">150</div><div class="stat-label">Youth trained in IoT nationally under this project</div></div>
+        <div class="stat-cell"><div class="stat-num">1</div><div class="stat-label">Capstone: Smart Home System</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section id="modules">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Curriculum</span>
+          <h2>Internship Modules</h2>
+        </div>
+      </div>
+      <div class="module-grid">
+        <div class="module-card">
+          <span class="module-num">Module 01</span>
+          <h4>Electronics</h4>
+          <p>Passive components, breadboard wiring, GPIO measurement and multimeter-based circuit testing.</p>
+        </div>
+        <div class="module-card">
+          <span class="module-num">Module 02</span>
+          <h4>Networking</h4>
+          <p>ESP32 Wi-Fi station setup, TCP/IP fundamentals, and cloud authentication for connected devices.</p>
+        </div>
+        <div class="module-card">
+          <span class="module-num">Module 03</span>
+          <h4>Arduino Programming</h4>
+          <p>Arduino IDE, board configuration, and C-based firmware for Arduino Uno and ESP32.</p>
+        </div>
+        <div class="module-card">
+          <span class="module-num">Module 04</span>
+          <h4>Hands-on IoT Projects</h4>
+          <p>Sensor interfacing (LDR, DHT11), real-time cloud telemetry via Blynk, and ThingSpeak data logging.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="trace-divider" aria-hidden="true">
+      <svg viewBox="0 0 1000 28" preserveAspectRatio="none">
+        <path d="M0,14 L400,14 L420,4 L580,4 L600,14 L1000,14"/>
+        <circle cx="400" cy="14" r="3"/>
+        <circle cx="600" cy="14" r="3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- PROGRESS TRACKER -->
+  <section id="progress">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Status</span>
+          <h2>Progress Tracker</h2>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-head">
+          <span id="progressText">Loading…</span>
+          <span>Target: 10-day sprint</span>
+        </div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section id="calendar">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Daily activity log</span>
+          <h2>Internship Calendar</h2>
+        </div>
+        <span class="section-index" id="adminHint">Log in as admin to edit entries</span>
+      </div>
+      <div class="cal-wrap">
+        <div class="cal-toolbar">
+          <div class="cal-nav">
+            <button type="button" class="cal-nav-btn" id="calPrevBtn" aria-label="Previous month">‹</button>
+            <h3 id="calMonthLabel">June 2026</h3>
+            <button type="button" class="cal-nav-btn" id="calNextBtn" aria-label="Next month">›</button>
+          </div>
+          <div class="cal-legend">
+            <span class="l-logged"><i></i>Activity logged</span>
+            <span class="l-absent"><i></i>Absent</span>
+            <span class="l-empty"><i></i>No entry</span>
+          </div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+
+      <!-- Quick-link card, styled to match the calendar card above exactly
+           (same .cal-wrap container: size, colors, border-radius, spacing,
+           hover behaviour and responsiveness) -->
+      <a class="cal-wrap projects-quicklink-card" href="https://github.com/Sonacatherine06?tab=repositories" target="_blank" rel="noopener" data-field="github-repos-href">
+        <div class="projects-quicklink-inner">
+          <span class="projects-quicklink-icon"><i class="fa-brands fa-github" aria-hidden="true"></i></span>
+          <div class="projects-quicklink-text">
+            <h3>Projects</h3>
+            <p>View all Arduino, Embedded Systems, IoT, Tinkercad, Raspberry Pi Pico, and Electronics projects.</p>
+          </div>
+          <span class="card-cert-link">View on GitHub →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <a class="marquee-card photo" href="certificates/ISRO-National-Space-Day-Certificate.jpeg" target="_blank" rel="noopener"><img src="certificates/thumbs/isro-thumb.jpg" alt="ISRO National Space Day certificate" loading="lazy" decoding="async"><b>First Prize — ISRO National Space Day 2024</b></a>
+      <a class="marquee-card photo" href="certificates/H2OForge-IEEE-Certificate.jpeg" target="_blank" rel="noopener"><img src="certificates/thumbs/h2oforge-thumb.jpg" alt="H2OForge IEEE certificate" loading="lazy" decoding="async"><b>H2OForge Underwater Robotics — IEEE CS Kerala, 2023</b></a>
+      <a class="marquee-card photo" href="certificates/Neo-Green-Labs-PCB-Certificate.jpeg" target="_blank" rel="noopener"><img src="certificates/thumbs/neogreen-thumb.jpg" alt="Neo Green Labs PCB certificate" loading="lazy" decoding="async"><b>PCB Design &amp; Fabrication — Neo Green Labs, 2024</b></a>
+      <a class="marquee-card photo" href="certificates/NPTEL-Design-Thinking-Certificate.pdf" target="_blank" rel="noopener"><img src="certificates/thumbs/nptel-thumb.jpg" alt="NPTEL Design Thinking certificate" loading="lazy" decoding="async"><b>Design Thinking – A Primer — NPTEL, 2025</b></a>
+      <a class="marquee-card photo" href="certificates/MATLAB-Onramp-Certificate.pdf" target="_blank" rel="noopener"><img src="certificates/thumbs/matlab-thumb.jpg" alt="MATLAB Onramp certificate" loading="lazy" decoding="async"><b>MATLAB Onramp — MATLAB Academy, 2025</b></a>
+      <div class="marquee-card" style="border-style:dashed;"><span class="eyebrow" style="margin-bottom:4px;">Coming soon</span><b>More photos</b>Add files to /certificates and /images</div>
+      <!-- duplicate set for seamless loop -->
+      <a class="marquee-card photo" href="certificates/ISRO-National-Space-Day-Certificate.jpeg" target="_blank" rel="noopener"><img src="certificates/thumbs/isro-thumb.jpg" alt="ISRO National Space Day certificate" loading="lazy" decoding="async"><b>First Prize — ISRO National Space Day 2024</b></a>
+      <a class="marquee-card photo" href="certificates/H2OForge-IEEE-Certificate.jpeg" target="_blank" rel="noopener"><img src="certificates/thumbs/h2oforge-thumb.jpg" alt="H2OForge IEEE certificate" loading="lazy" decoding="async"><b>H2OForge Underwater Robotics — IEEE CS Kerala, 2023</b></a>
+      <a class="marquee-card photo" href="certificates/Neo-Green-Labs-PCB-Certificate.jpeg" target="_blank" rel="noopener"><img src="certificates/thumbs/neogreen-thumb.jpg" alt="Neo Green Labs PCB certificate" loading="lazy" decoding="async"><b>PCB Design &amp; Fabrication — Neo Green Labs, 2024</b></a>
+      <a class="marquee-card photo" href="certificates/NPTEL-Design-Thinking-Certificate.pdf" target="_blank" rel="noopener"><img src="certificates/thumbs/nptel-thumb.jpg" alt="NPTEL Design Thinking certificate" loading="lazy" decoding="async"><b>Design Thinking – A Primer — NPTEL, 2025</b></a>
+      <a class="marquee-card photo" href="certificates/MATLAB-Onramp-Certificate.pdf" target="_blank" rel="noopener"><img src="certificates/thumbs/matlab-thumb.jpg" alt="MATLAB Onramp certificate" loading="lazy" decoding="async"><b>MATLAB Onramp — MATLAB Academy, 2025</b></a>
+      <div class="marquee-card" style="border-style:dashed;"><span class="eyebrow" style="margin-bottom:4px;">Coming soon</span><b>More photos</b>Add files to /certificates and /images</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Sona Catherine — PM-VIKAS IoT Assistant Internship, IIIT Kottayam.</span>
+    <div class="footer-links">
+      <a href="index.html">Back to home</a>
+    </div>
+  </div>
+</footer>
+
+<div class="day-tooltip" id="dayTooltip"></div>
+
+<div class="modal-backdrop" id="dayModal">
+  <div class="modal">
+    <h3 id="modalHeading">Edit day</h3>
+    <div class="modal-date" id="modalDate"></div>
+    <label for="modalTitle">Title</label>
+    <input type="text" id="modalTitle" maxlength="120" placeholder="e.g. Interfacing DHT11 Sensor">
+    <label for="modalModule">Module</label>
+    <input type="text" id="modalModule" maxlength="60" placeholder="Electronics / Networking / Arduino Programming / IoT Projects">
+    <label for="modalDesc">Description</label>
+    <textarea id="modalDesc" maxlength="600" placeholder="What was covered / done that day"></textarea>
+    <div class="modal-msg" id="modalMsg"></div>
+    <div class="modal-actions">
+      <button type="button" class="delete-btn" id="modalDeleteBtn">Delete</button>
+      <button type="button" id="modalCancelBtn">Cancel</button>
+      <button type="button" class="save" id="modalSaveBtn">Save entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- Optional — only used if firebase-config.js has been filled in (see that
+     file's comments). Harmless if left unconfigured. -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js" defer></script>
+<script src="firebase-config.js" defer></script>
+<script src="portfolio-data.js" defer></script>
+<script src="data.js" defer></script>
+<script src="script.js" defer></script>
+<script defer>
+  window.addEventListener('sc-auth-change', function (e) {
+    var hint = document.getElementById('adminHint');
+    if (hint) hint.textContent = e.detail.admin ? 'Click a day to add or edit its log' : 'Log in as admin to edit entries';
+  });
+</script>
+</body>
+</html>
