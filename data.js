@@ -68,7 +68,7 @@ const DEFAULT_CALENDAR_LOG = {
 
     summary: [
       'Analyzed operating principles of resistors, capacitors, and LEDs.',
-      'Built breadboard circuits and applied Kirchhoff's laws to test circuits.',
+      'Built breadboard circuits and applied Kirchhoff\'s laws to test circuits.',
     ],
     bullets: [
       'Analyzed operating principles of resistors, capacitors, and LEDs',
@@ -453,6 +453,100 @@ const DEFAULT_CALENDAR_LOG = {
       'Interfaced diverse IoT sensors and actuators with Arduino Uno',
       'Implemented and uploaded Arduino programs to verify circuit outputs',
       'Strengthened hardware interfacing, circuit design, and programming skills',
+    ],
+  },
+  '2026-07-21': {
+    title: 'Day 26: Tinkercad IoT Circuit Design – Sensors and Actuators (contd.)',
+    module: 'IoT Projects',
+    description: 'Continued sensor- and actuator-based Arduino circuit simulations in Tinkercad from the previous session. Verified circuit functionality and Arduino code for each build before moving on to the final round of practical tasks.',
+
+    summary: [
+      'Continued sensor and actuator circuit simulations in Tinkercad.',
+      'Verified circuit functionality and Arduino code for each build.',
+    ],
+    bullets: [
+      'Continued sensor-based and actuator-based Arduino circuit simulations',
+      'Verified circuit functionality against expected sensor/actuator behaviour',
+      'Reviewed and debugged Arduino code for each simulated circuit',
+      'Prepared completed builds for the practical task submission',
+    ],
+  },
+  '2026-07-22': {
+    title: 'Tinkercad IoT Circuit Design – Sensors and Actuators',
+    module: 'IoT Projects',
+    description: 'Completed the remaining Tinkercad practical tasks for the sensors-and-actuators module and finished the related written examination covering circuit design, sensor/actuator theory, and Arduino programming concepts.',
+
+    summary: [
+      'Completed the remaining Tinkercad sensor and actuator practical tasks.',
+      'Finished the related written examination for the module.',
+    ],
+    bullets: [
+      'Completed all remaining Tinkercad sensor and actuator practical tasks',
+      'Consolidated circuit designs and Arduino code from the module',
+      'Finished the written examination on circuit and sensor/actuator theory',
+    ],
+  },
+  '2026-07-23': {
+    title: 'Interaction with Prof. Andrés – Project Discussion & Feedback',
+    module: 'IoT Projects',
+    description: 'Discussed ongoing project progress with Prof. Andrés from Universidad de La Frontera, Chile, in an interactive session. Received technical feedback and guidance on refining the IoT application under development.',
+
+    summary: [
+      'Discussed project progress with Prof. Andrés from Universidad de La Frontera, Chile.',
+      'Received technical feedback and guidance on the IoT application.',
+    ],
+    bullets: [
+      'Presented project progress to Prof. Andrés, Universidad de La Frontera, Chile',
+      'Discussed the technical approach and design of the IoT application',
+      'Received feedback and guidance for refining the project',
+      'Noted follow-up action items from the discussion',
+    ],
+  },
+  '2026-07-24': {
+    title: 'Arduino Hardware Implementation',
+    module: 'IoT Projects',
+    description: 'Implemented previously simulated Tinkercad circuits on physical Arduino Uno hardware. Practiced real-world wiring, code uploading, debugging, and embedded programming beyond the simulation environment.',
+
+    summary: [
+      'Implemented Tinkercad-simulated circuits on physical Arduino Uno hardware.',
+      'Practiced wiring, code uploading, and embedded debugging.',
+    ],
+    bullets: [
+      'Implemented Tinkercad-simulated circuits on physical Arduino Uno hardware',
+      'Practiced real-world wiring of sensors and actuators on a breadboard',
+      'Uploaded and tested Arduino code on physical hardware',
+      'Debugged wiring and code issues specific to real hardware',
+    ],
+  },
+  '2026-07-27': {
+    title: 'Remote Temperature Monitoring & Control using Cisco Packet Tracer',
+    module: 'Networking',
+    description: 'Simulated an IoT-based remote temperature monitoring system using Cisco Packet Tracer, demonstrating remote monitoring and device management across a networked environment.',
+
+    summary: [
+      'Simulated an IoT-based remote temperature monitoring system.',
+      'Demonstrated remote monitoring and device management across networks.',
+    ],
+    bullets: [
+      'Simulated an IoT-based remote temperature monitoring system in Cisco Packet Tracer',
+      'Configured networked IoT devices for remote data monitoring',
+      'Demonstrated remote device management across multiple network segments',
+    ],
+  },
+  '2026-07-28': {
+    title: 'Tinkercad IoT Project Development – Sensors and Actuators',
+    module: 'IoT Projects',
+    description: 'Completed 20 Arduino IoT projects in Tinkercad, developed using single and multiple sensors/actuators. Strengthened skills in circuit design, Arduino programming, troubleshooting, and hardware interfacing.',
+
+    summary: [
+      'Completed 20 Arduino IoT projects in Tinkercad.',
+      'Developed projects using single and multiple sensors/actuators.',
+    ],
+    bullets: [
+      'Completed 20 Arduino IoT projects in Tinkercad',
+      'Developed projects using single sensor/actuator and combined sensor+actuator setups',
+      'Strengthened circuit design and Arduino programming skills',
+      'Practiced troubleshooting and hardware interfacing across all projects',
     ],
   },
 };

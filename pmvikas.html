@@ -174,6 +174,29 @@
     </div>
   </section>
 
+  <!-- PROJECTS (Sensor / Actuator / Sensor+Actuator — pulled from the
+       Sensor_Projects, Actuator-Projects, Multiple-Sensor-Actuator and
+       one-sensor-one-actuator GitHub repos). Rendered by
+       renderPmVikasProjects() in script.js from PORTFOLIO.pmVikasProjectCategories
+       / PORTFOLIO.pmVikasProjects in portfolio-data.js. To add, remove or
+       recategorize a project, edit portfolio-data.js — not this file.
+       These projects appear ONLY on this page, nowhere else in the site. -->
+  <section id="pv-projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">From my GitHub</span>
+          <h2>Projects</h2>
+          <p>Every individual Arduino build from my Sensor, Actuator, and Sensor+Actuator repositories — organized by category, with circuits, descriptions and working GitHub links.</p>
+        </div>
+        <a href="https://github.com/Sonacatherine06?tab=repositories" target="_blank" rel="noopener" class="btn-primary" data-field="github-repos-href">
+          <i class="fa-brands fa-github" style="margin-right:8px;" aria-hidden="true"></i>View My GitHub Profile
+        </a>
+      </div>
+      <div id="pmVikasProjectsRoot"></div>
+    </div>
+  </section>
+
   <!-- ACHIEVEMENTS MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track" id="marqueeTrack">
@@ -220,6 +243,22 @@
       <button type="button" class="delete-btn" id="modalDeleteBtn">Delete</button>
       <button type="button" id="modalCancelBtn">Cancel</button>
       <button type="button" class="save" id="modalSaveBtn">Save entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- Read-only day detail popup, shown to every visitor when a logged
+     calendar day is clicked. Renders that day's activities as a
+     checked-off checklist. Populated by openDayDetail() in script.js. -->
+<div class="modal-backdrop" id="dayDetailModal">
+  <div class="modal day-detail-modal">
+    <button type="button" class="day-detail-close" id="dayDetailCloseX" aria-label="Close">&times;</button>
+    <span class="day-detail-module" id="dayDetailModule"></span>
+    <h3 id="dayDetailTitle">Day title</h3>
+    <div class="modal-date" id="dayDetailDate"></div>
+    <ul class="day-detail-checklist" id="dayDetailChecklist"></ul>
+    <div class="modal-actions">
+      <button type="button" id="dayDetailCloseBtn">Close</button>
     </div>
   </div>
 </div>

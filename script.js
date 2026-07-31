@@ -99,19 +99,35 @@
   // Only repos listed in PORTFOLIO.featuredProjects ever appear here —
   // nothing is pulled automatically from the GitHub account.
   function renderFeaturedProjects() {
-    const root = document.getElementById('featuredProjectsRoot');
-    if (!root || !PORTFOLIO.projectCategories || !PORTFOLIO.featuredProjects) return;
+    renderProjectSection('featuredProjectsRoot', PORTFOLIO.projectCategories, PORTFOLIO.featuredProjects);
+  }
+
+  // ---------- PM-VIKAS projects (pmvikas.html only) ----------
+  // Same rendering engine as above, pointed at the separate
+  // pmVikasProjectCategories / pmVikasProjects lists so these never
+  // leak onto projects.html or the index.html "Projects" section.
+  function renderPmVikasProjects() {
+    renderProjectSection('pmVikasProjectsRoot', PORTFOLIO.pmVikasProjectCategories, PORTFOLIO.pmVikasProjects);
+  }
+
+  // ---------- shared project-grid renderer ----------
+  // rootId    — id of the container element to render into
+  // categories — array of { key, icon, title, description }
+  // allProjects — array of project objects (see portfolio-data.js for field reference)
+  function renderProjectSection(rootId, categories, allProjects) {
+    const root = document.getElementById(rootId);
+    if (!root || !categories || !allProjects) return;
 
     const username = PORTFOLIO.profile.githubUsername;
     const byCategory = {};
-    PORTFOLIO.featuredProjects.forEach((p) => {
+    allProjects.forEach((p) => {
       (byCategory[p.category] = byCategory[p.category] || []).push(p);
     });
 
     root.innerHTML = '';
     const cardEls = []; // { el, project } — for the async GitHub-existence check below
 
-    PORTFOLIO.projectCategories.forEach((cat) => {
+    categories.forEach((cat) => {
       const projects = byCategory[cat.key] || [];
 
       const section = document.createElement('section');
@@ -151,6 +167,11 @@
           ? `https://github.com/${username}/${project.githubRepo}/tree/${branch}/${project.repoPath}`
           : `https://github.com/${username}/${project.githubRepo}`;
 
+        // A project can set its own `icon` (matched to its specific
+        // hardware, e.g. 🌡️ for a temperature sensor) — falls back to
+        // the category icon when not set.
+        const icon = project.icon || cat.icon;
+
         const card = document.createElement('div');
         card.className = 'card project-card featured-project-card';
 
@@ -166,18 +187,18 @@
             if (imgEl.dataset.fallbackApplied) return;
             imgEl.dataset.fallbackApplied = 'true';
             img.classList.add('no-image');
-            img.textContent = cat.icon;
+            img.textContent = icon;
           });
           img.appendChild(imgEl);
         } else {
           img.classList.add('no-image');
-          img.textContent = cat.icon;
+          img.textContent = icon;
         }
 
         const body = document.createElement('div');
         body.className = 'featured-project-body';
         body.innerHTML = `
-          <span class="project-tag">${cat.icon} ${number} — ${cat.title.replace(' Projects', '').replace(' & Output', '')}</span>
+          <span class="project-tag">${icon} ${number} — ${cat.title.replace(' Projects', '').replace(' & Output', '')}</span>
           <h3>${number} — ${project.title}</h3>
           <p class="project-desc">${project.description || ''}</p>
         `;
@@ -193,7 +214,7 @@
           if (project.detailPage) {
             window.location.href = project.detailPage;
           } else {
-            openProjectModal(project, cat, number, repoUrl);
+            openProjectModal(project, cat, number, repoUrl, icon);
           }
         });
 
@@ -245,7 +266,8 @@
 
   // ---------- shared "View Project" detail modal ----------
   let projectModalEl = null;
-  function openProjectModal(project, cat, number, repoUrl) {
+  function openProjectModal(project, cat, number, repoUrl, icon) {
+    icon = icon || project.icon || cat.icon;
     if (!projectModalEl) {
       projectModalEl = document.createElement('div');
       projectModalEl.className = 'project-modal-backdrop';
@@ -271,10 +293,10 @@
         ${project.circuitImage ? `<figure><img src="${project.circuitImage}" alt="${project.title} circuit diagram" loading="lazy"><figcaption>Circuit Diagram</figcaption></figure>` : ''}
         ${project.outputImage ? `<figure><img src="${project.outputImage}" alt="${project.title} output" loading="lazy"><figcaption>Output</figcaption></figure>` : ''}
       </div>
-    ` : `<div class="project-modal-media no-media"><span>${cat.icon}</span><p>No circuit/output images added yet for this project.</p></div>`;
+    ` : `<div class="project-modal-media no-media"><span>${icon}</span><p>No circuit/output images added yet for this project.</p></div>`;
 
     projectModalEl.querySelector('.project-modal-content').innerHTML = `
-      <span class="project-tag">${cat.icon} ${number} — ${cat.title}</span>
+      <span class="project-tag">${icon} ${number} — ${cat.title}</span>
       <h3>${project.title}</h3>
       <p class="project-desc">${project.description || ''}</p>
       ${mediaHtml}
@@ -307,6 +329,7 @@
     applyProfileFields();
     renderCertGrid();
     renderFeaturedProjects();
+    renderPmVikasProjects();
   });
 })();
 
@@ -612,7 +635,11 @@
         el.addEventListener('mousemove', moveTooltip);
         el.addEventListener('mouseleave', hideTooltip);
       }
-      if (admin) el.addEventListener('click', () => openModal(key, entry));
+      if (admin) {
+        el.addEventListener('click', () => openModal(key, entry));
+      } else if (entry) {
+        el.addEventListener('click', () => openDayDetail(key, entry));
+      }
       grid.appendChild(el);
     }
 
@@ -674,8 +701,18 @@
         ? entry.bullets
         : (entry.description ? [entry.description] : []);
 
+      // Use 2-line summary if available, fall back to first bullet
+      const summary = entry.summary && Array.isArray(entry.summary) && entry.summary.length >= 2
+        ? entry.summary
+        : (entry.description ? [entry.description.slice(0, 120)] : ['']);
+
       // Build bullet HTML
       const bulletHtml = bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('');
+
+      // Build 2-line summary HTML (two separate spans for line clamping)
+      const summaryHtml = summary.length >= 2
+        ? `<span class="tl-line1">${escapeHtml(summary[0])}</span><span class="tl-line2">${escapeHtml(summary[1])}</span>`
+        : escapeHtml(summary[0] || '');
 
       const row = document.createElement('div');
       row.className = 'tl-row' + (isAbsent ? ' absent' : '');
@@ -684,11 +721,10 @@
         <div class="tl-dot-col"><div class="tl-dot${isAbsent ? ' absent' : ''}"></div>${idx < keys.length - 1 ? '<div class="tl-line"></div>' : ''}</div>
         <div class="tl-content">
           <h4>${escapeHtml(entry.title)}${moduleLabel}</h4>
-          <p class="tl-description">${escapeHtml(entry.description || '')}</p>
+          <p class="tl-summary">${summaryHtml}</p>
           <div class="tl-bullets${isExpanded ? ' expanded' : ''}">
             <ul class="tl-bullet-list">${bulletHtml}</ul>
           </div>
-          <span class="tl-toggle">${isExpanded ? '• less' : '• more'}</span>
         </div>`;
       tl.appendChild(row);
 
@@ -729,6 +765,53 @@
   if (modalBackdrop) {
     modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeModal(); });
   }
+
+  // ---------- read-only day detail popup (checklist), for all visitors ----------
+  const dayDetailModal = document.getElementById('dayDetailModal');
+  const dayDetailModule = document.getElementById('dayDetailModule');
+  const dayDetailTitle = document.getElementById('dayDetailTitle');
+  const dayDetailDate = document.getElementById('dayDetailDate');
+  const dayDetailChecklist = document.getElementById('dayDetailChecklist');
+  const dayDetailCloseBtn = document.getElementById('dayDetailCloseBtn');
+  const dayDetailCloseX = document.getElementById('dayDetailCloseX');
+
+  function openDayDetail(key, entry) {
+    if (!dayDetailModal || !entry) return;
+    const isAbsent = entry.status === 'absent';
+
+    dayDetailDate.textContent = new Date(key + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    dayDetailTitle.textContent = entry.title || '';
+
+    if (isAbsent) {
+      dayDetailModule.textContent = 'Absent';
+      dayDetailModule.className = 'day-detail-module is-absent';
+    } else {
+      dayDetailModule.textContent = (entry.module && (MODULE_LABELS[entry.module] || entry.module)) || '';
+      dayDetailModule.className = 'day-detail-module';
+      dayDetailModule.style.display = entry.module ? '' : 'none';
+    }
+
+    const items = (entry.bullets && Array.isArray(entry.bullets) && entry.bullets.length > 0)
+      ? entry.bullets
+      : (entry.description ? [entry.description] : []);
+
+    dayDetailChecklist.className = 'day-detail-checklist' + (isAbsent ? ' is-absent' : '');
+    dayDetailChecklist.innerHTML = items.map((item) =>
+      `<li><span class="chk">${isAbsent ? '–' : '✓'}</span><span>${escapeHtml(item)}</span></li>`
+    ).join('');
+
+    dayDetailModal.classList.add('show');
+  }
+  function closeDayDetail() { if (dayDetailModal) dayDetailModal.classList.remove('show'); }
+
+  if (dayDetailCloseBtn) dayDetailCloseBtn.addEventListener('click', closeDayDetail);
+  if (dayDetailCloseX) dayDetailCloseX.addEventListener('click', closeDayDetail);
+  if (dayDetailModal) {
+    dayDetailModal.addEventListener('click', (e) => { if (e.target === dayDetailModal) closeDayDetail(); });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDayDetail();
+  });
 
   async function persistEntry(date, entry) {
     const online = await checkBackend();
