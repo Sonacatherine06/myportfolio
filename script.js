@@ -674,11 +674,16 @@
         ? entry.bullets
         : (entry.description ? [entry.description] : []);
 
+      // Use 2-line summary if available, fall back to first bullet
+      const summary = entry.summary && Array.isArray(entry.summary) && entry.summary.length >= 2
+        ? entry.summary
+        : (entry.description ? [entry.description.slice(0, 120)] : ['']);
+
       // Build bullet HTML
       const bulletHtml = bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('');
 
-      // Build preview: first bullet (or description) as a short summary
-      const previewText = bullets.length > 0 ? bullets[0] : (entry.description || '');
+      // Build 2-line summary HTML
+      const summaryHtml = summary.map(s => escapeHtml(s)).join('<br>');
 
       const row = document.createElement('div');
       row.className = 'tl-row' + (isAbsent ? ' absent' : '');
@@ -687,7 +692,7 @@
         <div class="tl-dot-col"><div class="tl-dot${isAbsent ? ' absent' : ''}"></div>${idx < keys.length - 1 ? '<div class="tl-line"></div>' : ''}</div>
         <div class="tl-content">
           <h4>${escapeHtml(entry.title)}${moduleLabel}</h4>
-          <p class="tl-preview">${escapeHtml(previewText)}</p>
+          <p class="tl-summary">${summaryHtml}</p>
           <div class="tl-bullets${isExpanded ? ' expanded' : ''}">
             <ul class="tl-bullet-list">${bulletHtml}</ul>
           </div>
