@@ -1255,11 +1255,12 @@ footer{
   text-transform: uppercase;
 }
 .cal-day{
-  aspect-ratio: 1;
+  aspect-ratio: unset;
+  min-height: 108px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  padding: 6px;
-  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 7px 8px 8px;
+  display: flex; flex-direction: column; justify-content: flex-start; gap: 4px;
   font-family: var(--font-mono);
   font-size: 11px;
   cursor: default;
@@ -1267,6 +1268,19 @@ footer{
   transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
   position: relative;
 }
+.cal-day .d-num-row{ display: flex; align-items: center; justify-content: space-between; }
+.cal-day .d-title{
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: var(--ink);
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cal-day.is-absent .d-title{ color: var(--ink-faint); font-style: italic; }
 .cal-day.empty{ border: none; background: transparent; }
 .cal-day.has-log{
   background: var(--signal-dim);
@@ -1287,7 +1301,7 @@ footer{
 .cal-day.has-log .d-num{ color: var(--signal-2); font-weight: 600; }
 .cal-day .d-dot{
   width: 6px; height: 6px; border-radius: 50%; background: var(--signal);
-  align-self: flex-end;
+  flex: none; margin-top: 2px;
   display: none;
   box-shadow: 0 0 6px rgba(52,217,240,0.8);
 }
@@ -1476,4 +1490,6 @@ footer{
 @media (max-width: 480px){
   .cert-grid{ grid-template-columns: 1fr; }
   .contact-row{ flex-direction: column; align-items: flex-start; }
+  .cal-day{ min-height: 82px; padding: 5px 6px 6px; }
+  .cal-day .d-title{ font-size: 9px; -webkit-line-clamp: 3; }
 }

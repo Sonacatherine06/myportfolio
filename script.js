@@ -628,7 +628,8 @@
       const hasLog = !!entry && !isAbsent;
       const el = document.createElement('div');
       el.className = 'cal-day' + (hasLog ? ' has-log' : '') + (isAbsent ? ' is-absent' : '') + (admin ? ' editable' : '');
-      el.innerHTML = `<span class="d-num">${d}</span><span class="d-dot"></span>`;
+      const titleHtml = entry ? `<span class="d-title">${escapeHtml(entry.title || '')}</span>` : '';
+      el.innerHTML = `<span class="d-num-row"><span class="d-num">${d}</span><span class="d-dot"></span></span>${titleHtml}`;
 
       if (entry) {
         el.addEventListener('mouseenter', (e) => showTooltip(e, entry));
