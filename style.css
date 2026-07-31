@@ -1110,24 +1110,19 @@ footer{
 /* expandable timeline cards */
 .tl-content{ cursor: pointer; transition: background-color .2s ease; }
 .tl-content:hover{ background: rgba(52,217,240,0.04); }
-.tl-summary{
+.tl-description{
   font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;
   margin-bottom: 6px;
   transition: color .2s ease;
 }
-.tl-summary .tl-line1{ display: block; }
-.tl-summary .tl-line2{ display: block; }
-.tl-content:hover .tl-summary{ color: var(--signal-2); }
-.tl-content::after{
-  content: "• more";
-  color: var(--signal);
-  font-size: 11px;
-  opacity: 0.7;
-  margin-left: 6px;
+.tl-content:hover .tl-description{ color: var(--signal-2); }
+.tl-toggle{
+  display: inline-block;
+  font-size: 11px; color: var(--signal);
+  opacity: 0.7; margin-left: 6px;
+  transition: opacity .2s ease;
 }
-.tl-bullets.expanded .tl-content::after{
-  content: "• less";
-}
+.tl-content:hover .tl-toggle{ opacity: 1; }
 .tl-bullets{
   max-height: 0; overflow: hidden; opacity: 0;
   transition: max-height .45s ease, opacity .45s ease, padding .45s ease;
@@ -1157,15 +1152,12 @@ footer{
   from{ opacity: 0; transform: translateY(6px); }
   to{ opacity: 1; transform: translateY(0); }
 }
-.tl-bullets.expanded .tl-summary::after{
-  content: " • less";
-}
 
 /* mobile responsiveness */
 @media (max-width: 640px){
   .tl-row{ grid-template-columns: 70px 16px 1fr; gap: 10px; padding: 10px 0; }
   .tl-content h4{ font-size: 13px; }
-  .tl-summary{ font-size: 12px; }
+  .tl-description{ font-size: 12px; }
   .tl-bullet-list{ font-size: 12px; }
   .tl-bullets.expanded{ max-height: 400px; }
 }

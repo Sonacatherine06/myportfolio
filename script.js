@@ -674,18 +674,8 @@
         ? entry.bullets
         : (entry.description ? [entry.description] : []);
 
-      // Use 2-line summary if available, fall back to first bullet
-      const summary = entry.summary && Array.isArray(entry.summary) && entry.summary.length >= 2
-        ? entry.summary
-        : (entry.description ? [entry.description.slice(0, 120)] : ['']);
-
       // Build bullet HTML
       const bulletHtml = bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('');
-
-      // Build 2-line summary HTML (two separate spans for line clamping)
-      const summaryHtml = summary.length >= 2
-        ? `<span class="tl-line1">${escapeHtml(summary[0])}</span><span class="tl-line2">${escapeHtml(summary[1])}</span>`
-        : escapeHtml(summary[0] || '');
 
       const row = document.createElement('div');
       row.className = 'tl-row' + (isAbsent ? ' absent' : '');
@@ -694,10 +684,11 @@
         <div class="tl-dot-col"><div class="tl-dot${isAbsent ? ' absent' : ''}"></div>${idx < keys.length - 1 ? '<div class="tl-line"></div>' : ''}</div>
         <div class="tl-content">
           <h4>${escapeHtml(entry.title)}${moduleLabel}</h4>
-          <p class="tl-summary">${summaryHtml}</p>
+          <p class="tl-description">${escapeHtml(entry.description || '')}</p>
           <div class="tl-bullets${isExpanded ? ' expanded' : ''}">
             <ul class="tl-bullet-list">${bulletHtml}</ul>
           </div>
+          <span class="tl-toggle">${isExpanded ? '• less' : '• more'}</span>
         </div>`;
       tl.appendChild(row);
 
