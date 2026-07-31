@@ -682,8 +682,10 @@
       // Build bullet HTML
       const bulletHtml = bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('');
 
-      // Build 2-line summary HTML
-      const summaryHtml = summary.map(s => escapeHtml(s)).join('<br>');
+      // Build 2-line summary HTML (two separate spans for line clamping)
+      const summaryHtml = summary.length >= 2
+        ? `<span class="tl-line1">${escapeHtml(summary[0])}</span><span class="tl-line2">${escapeHtml(summary[1])}</span>`
+        : escapeHtml(summary[0] || '');
 
       const row = document.createElement('div');
       row.className = 'tl-row' + (isAbsent ? ' absent' : '');
